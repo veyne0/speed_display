@@ -12,21 +12,30 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import java.text.DecimalFormat;
 
 import static java.awt.Color.white;
-import static org.MT.speed.coordinates.speed;
-import static org.MT.speed.listen.playerspeed;
+import static org.MT.speed.coordinates.chuizhi_speed;
+import static org.MT.speed.coordinates.shuiping_speed;
+import static org.MT.speed.listen.*;
 
 @EventBusSubscriber(modid = "speed_display", bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class hud {
     @SubscribeEvent
-    public static void onRegisterGuiLayers(RegisterGuiLayersEvent event) {
-        // 注册一个绘制层，ID 为 speed:my_hud
+    public static void onRegisterGuiLayers(RegisterGuiLayersEvent event){
+
         event.registerAbove(
                 VanillaGuiLayers.HOTBAR,
                 net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("speed_display", "my_hud"),
                 (guiGraphics, deltaTracker) -> {
                     DecimalFormat a = new DecimalFormat("0.00");
+                    String text= "";
+                    String text1="";
+                    if (listen.p){
+                         text = "水平速度:" + a.format(shuiping_speed) + "m/s" ;
+                         text1 = "垂直速度:" + a.format(chuizhi_speed) + "m/s" ;
 
-                    String text = "当前速度为" + a.format(playerspeed) + "m/s" ;
+
+                    }else { text1=""; text = "" ;}
+
+
                     int x = 10;
                     int y = 10;
                     int color = 0xFFFFFF; // 白色
@@ -40,6 +49,16 @@ public class hud {
                             color,
                             shadow
                     );
+                    guiGraphics.drawString(
+                            Minecraft.getInstance().font,
+                            text1,
+                            x,
+                            y+10,
+                            color,
+                            shadow
+                    );
+
+
                 }
         );
     }

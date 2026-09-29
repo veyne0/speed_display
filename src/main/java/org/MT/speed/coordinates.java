@@ -13,6 +13,9 @@ public class coordinates{
     private static final Map<UUID, Vec3> lastPositions = new HashMap<>();
 
     private static final Map<UUID, Integer> counters = new HashMap<>();
+    public static double chuizhi_speed = 0;
+    public static double shuiping_speed=0;
+    public static double smooth=0.3;
 
     public static double speed(ServerPlayer player){
         UUID uuid = player.getUUID();
@@ -23,22 +26,22 @@ public class coordinates{
             Vec3 last = lastPositions.get(uuid);
             lastPositions.put(uuid,now);
 
-
             if (last != null ){
-                double x = last.x - now.x;
-                double y = last.y - now.y;
-                double z = last.z - now.z;
-                double speed = Math.sqrt(x*x + y*y + z*z);
-                return speed ;
-            }
+                double x = now.x - last.x;
+                double z = now.z - last.z;
+                double y = now.y - last.y;
+                double chui_speed = Math.sqrt(y*y);
+                chuizhi_speed=chui_speed *smooth + chui_speed *(1-smooth);
+                double shui_speed = Math.sqrt(x*x+ z*z);
+                shuiping_speed=shui_speed *smooth +shui_speed * (1-smooth);
+                counters.put(uuid,count);
 
+            }
         }
         counters.put(uuid,count);
-        return -1;
 
-
+        return -1.00000000000000;
     }
-
 
 }
 
