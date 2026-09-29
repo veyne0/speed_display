@@ -1,5 +1,7 @@
 {
   "key.speed.display_hud": "switch speed_display",
-  "category.speed_display": "speed_display"
+  "category.speed_display": "speed_display",
+  "shuiping_speed": "Horizontal velocity : %s m/s  ",
+  "chuizhi_speed": "Vertical velocity : %s m/s"
 
 }

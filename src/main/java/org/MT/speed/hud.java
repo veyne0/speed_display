@@ -9,13 +9,14 @@ import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
+import java.awt.*;
 import java.text.DecimalFormat;
 
 import static java.awt.Color.white;
 import static org.MT.speed.coordinates.chuizhi_speed;
 import static org.MT.speed.coordinates.shuiping_speed;
 import static org.MT.speed.listen.*;
-
+import net.minecraft.network.chat.Component;
 @EventBusSubscriber(modid = "speed_display", bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class hud {
     @SubscribeEvent
@@ -26,14 +27,15 @@ public class hud {
                 net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("speed_display", "my_hud"),
                 (guiGraphics, deltaTracker) -> {
                     DecimalFormat a = new DecimalFormat("0.00");
-                    String text= "";
-                    String text1="";
+                    Component text1;
+                    Component text ;
+
                     if (listen.p){
-                         text = "水平速度:" + a.format(shuiping_speed) + "m/s" ;
-                         text1 = "垂直速度:" + a.format(chuizhi_speed) + "m/s" ;
+                        text =Component.translatable("shuiping_speed",a.format(shuiping_speed));
+                        text1 = Component.translatable("chuizhi_speed",a.format(chuizhi_speed));
 
 
-                    }else { text1=""; text = "" ;}
+                    }else { text1=Component.literal("0.00"); text =Component.literal("0.00") ;}
 
 
                     int x = 10;

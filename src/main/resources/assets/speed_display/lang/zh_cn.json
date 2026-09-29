@@ -1,4 +1,6 @@
 {
   "key.speed.display_hud": "开/关速度显示",
-  "category.speed_display": "速度显示"
+  "category.speed_display": "速度显示",
+  "shuiping_speed": "水平速度: %s m/s  ",
+  "chuizhi_speed ": "垂直速度: %s m/s"
 }
