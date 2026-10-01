@@ -35,7 +35,7 @@ public class hud {
                         text1 = Component.translatable("chuizhi_speed",a.format(chuizhi_speed));
 
 
-                    }else { text1=Component.literal("0.00"); text =Component.literal("0.00") ;}
+                    }else { text1=Component.literal(""); text =Component.literal("") ;}
 
 
                     int x = 10;
